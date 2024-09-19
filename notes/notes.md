@@ -1,9 +1,3 @@
----
-title: Algorithms and data structures
-author: Yann Salmon
-date: 2023-08-21
----
-
 # Algorithms and data structures
 
 ## Resources
