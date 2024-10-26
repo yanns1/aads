@@ -461,7 +461,7 @@ class ArrayList[T]:
 
         return self
 
-    def bubble_sort(self, start: int = 0, end: int = -1) -> "ArrayList":
+    def bubble_sort(self, start: int = 0, end: int = -1):
         """
         Sorts the elements from index *start* to index *end* (included) using bubble sort.
 
@@ -485,5 +485,3 @@ class ArrayList[T]:
                     tmp = self._arr[i]
                     self._arr[i] = self._arr[i + 1]
                     self._arr[i + 1] = tmp
-
-        return self
