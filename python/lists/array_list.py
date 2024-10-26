@@ -127,7 +127,7 @@ class ArrayList[T]:
                 return Option.Some(i)
         return Option.NONE()
 
-    def set_at_idx(self, i: int, v: T) -> "ArrayList":
+    def set_at_idx(self, i: int, v: T) -> "ArrayList[T]":
         """
         Sets value at index *i* to *v*.
 
@@ -146,7 +146,7 @@ class ArrayList[T]:
 
         Returns
         -------
-        `ArrayList`
+        `ArrayList[T]`
             This list (useful for chaining operations).
         """
         if i == -1:
@@ -167,7 +167,7 @@ class ArrayList[T]:
 
         self.set_at_idx(key, value)
 
-    def delete_at_idx(self, i: int) -> "ArrayList":
+    def delete_at_idx(self, i: int) -> "ArrayList[T]":
         """
         Deletes value at index *i*.
 
@@ -185,7 +185,7 @@ class ArrayList[T]:
 
         Returns
         -------
-        `ArrayList`
+        `ArrayList[T]`
             This list (useful for chaining operations).
         """
         if i == -1:
@@ -210,7 +210,7 @@ class ArrayList[T]:
 
         self.delete_at_idx(key)
 
-    def insert_at_idx(self, i: int, v: T) -> "ArrayList":
+    def insert_at_idx(self, i: int, v: T) -> "ArrayList[T]":
         """
         Inserts value *v* at index *i*.
 
@@ -229,7 +229,7 @@ class ArrayList[T]:
 
         Returns
         -------
-        `ArrayList`
+        `ArrayList[T]`
             This list (useful for chaining operations).
         """
         if i == -1:
@@ -260,7 +260,7 @@ class ArrayList[T]:
         self._size += 1
         return self
 
-    def prepend(self, v: T) -> "ArrayList":
+    def prepend(self, v: T) -> "ArrayList[T]":
         """
         Prepends *v* to this list, i.e. inserts it at the *beginning* of this list.
 
@@ -270,12 +270,12 @@ class ArrayList[T]:
 
         Returns
         -------
-        `ArrayList`
+        `ArrayList[T]`
             This list (useful for chaining operations).
         """
         return self.insert_at_idx(0, v)
 
-    def append(self, v: T) -> "ArrayList":
+    def append(self, v: T) -> "ArrayList[T]":
         """
         Appends *v* to this list, i.e. inserts it at the *end* of this list.
 
@@ -285,12 +285,12 @@ class ArrayList[T]:
 
         Returns
         -------
-        `ArrayList`
+        `ArrayList[T]`
             This list (useful for chaining operations).
         """
         return self.insert_at_idx(self._size, v)
 
-    def extend(self, arr: "ArrayList") -> "ArrayList":
+    def extend(self, arr: "ArrayList[T]") -> "ArrayList[T]":
         """
         Extends this list with the elements in *arr*.
 
@@ -303,7 +303,7 @@ class ArrayList[T]:
 
         Returns
         -------
-        `ArrayList`
+        `ArrayList[T]`
             This list (useful for chaining operations).
         """
         for i in range(len(arr)):
@@ -311,7 +311,7 @@ class ArrayList[T]:
 
         return self
 
-    def __add__(self, other) -> "ArrayList":
+    def __add__(self, other) -> "ArrayList[T]":
         """
         Extends this list with the elements in *other*.
 
@@ -324,7 +324,7 @@ class ArrayList[T]:
 
         Returns
         -------
-        `ArrayList`
+        `ArrayList[T]`
             This list (useful for chaining operations).
         """
         if not isinstance(other, ArrayList):
@@ -344,13 +344,13 @@ class ArrayList[T]:
             py_lst.append(self._arr[i])
         return py_lst
 
-    def clone(self) -> "ArrayList":
+    def clone(self) -> "ArrayList[T]":
         """
         Returns a clone (i.e. a deep copy) of this list.
 
         Returns
         -------
-        `ArrayList`
+        `ArrayList[T]`
         """
         return copy.deepcopy(self)
 
