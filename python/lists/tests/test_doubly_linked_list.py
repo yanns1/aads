@@ -1,5 +1,7 @@
 import unittest
 
+from option import Option
+
 from lists import DoublyLinkedList
 
 
@@ -212,33 +214,36 @@ class TestDoublyLinkedList(unittest.TestCase):
     def test_insert(self):
         lst = DoublyLinkedList([0])
         node = lst.get_at_idx(0).unwrap()
-        new_node = lst.insert(-1, node, False)
+        new_node = lst.insert(-1, Option.Some(node), False)
         self.assertEqual(new_node.v, -1)
         self.assertEqual(str(lst), "[-1 >< 0]")
-        new_node = lst.insert(1, node, True)
+        new_node = lst.insert(1, Option.Some(node), True)
         self.assertEqual(new_node.v, 1)
         self.assertEqual(str(lst), "[-1 >< 0 >< 1]")
+        new_node = lst.insert(2, Option.NONE())
+        self.assertEqual(new_node.v, 2)
+        self.assertEqual(str(lst), "[-1 >< 0 >< 1 >< 2]")
 
         lst = DoublyLinkedList([0, 3, 6])
         node0 = lst.get_at_idx(0).unwrap()
         node1 = lst.get_at_idx(1).unwrap()
         node2 = lst.get_at_idx(2).unwrap()
-        new_node = lst.insert(-1, node0, False)
+        new_node = lst.insert(-1, Option.Some(node0), False)
         self.assertEqual(new_node.v, -1)
         self.assertEqual(str(lst), "[-1 >< 0 >< 3 >< 6]")
-        new_node = lst.insert(1, node0, True)
+        new_node = lst.insert(1, Option.Some(node0), True)
         self.assertEqual(new_node.v, 1)
         self.assertEqual(str(lst), "[-1 >< 0 >< 1 >< 3 >< 6]")
-        new_node = lst.insert(2, node1, False)
+        new_node = lst.insert(2, Option.Some(node1), False)
         self.assertEqual(new_node.v, 2)
         self.assertEqual(str(lst), "[-1 >< 0 >< 1 >< 2 >< 3 >< 6]")
-        new_node = lst.insert(4, node1, True)
+        new_node = lst.insert(4, Option.Some(node1), True)
         self.assertEqual(new_node.v, 4)
         self.assertEqual(str(lst), "[-1 >< 0 >< 1 >< 2 >< 3 >< 4 >< 6]")
-        new_node = lst.insert(5, node2, False)
+        new_node = lst.insert(5, Option.Some(node2), False)
         self.assertEqual(new_node.v, 5)
         self.assertEqual(str(lst), "[-1 >< 0 >< 1 >< 2 >< 3 >< 4 >< 5 >< 6]")
-        new_node = lst.insert(7, node2, True)
+        new_node = lst.insert(7, Option.Some(node2), True)
         self.assertEqual(new_node.v, 7)
         self.assertEqual(str(lst), "[-1 >< 0 >< 1 >< 2 >< 3 >< 4 >< 5 >< 6 >< 7]")
 

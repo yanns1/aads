@@ -343,7 +343,9 @@ class DoublyLinkedList[T]:
         if res.is_none:
             raise IndexError()
 
-    def insert(self, v: T, neighbor: DLLNode[T], after: bool = True) -> DLLNode[T]:
+    def insert(
+        self, v: T, neighbor: Option[DLLNode[T]], after: bool = True
+    ) -> DLLNode[T]:
         """
         Inserts an element before or *after* the node *neighbor*.
 
@@ -353,10 +355,12 @@ class DoublyLinkedList[T]:
 
         Parameters
         ----------
-        val
+        v
             The element to insert.
         neighbor
             The neighbor of the node to create.
+
+            If `Option.NONE()`, inserts at the end of the list.
         after
             Whether to insert the new node after *neighbor* or before.
 
@@ -367,23 +371,34 @@ class DoublyLinkedList[T]:
         """
         new_node = DLLNode(v)
 
-        if after:
-            new_node._prv = neighbor
-            if neighbor._nxt is not None:
-                new_node._nxt = neighbor._nxt
-                neighbor._nxt._prv = new_node
-            neighbor._nxt = new_node
+        if neighbor == Option.NONE():
+            if self._hd is None:
+                self._hd = new_node
+                self._tl = new_node
+            else:
+                new_node._prv = self._tl
+                self._tl._nxt = new_node  # type: ignore
+            self._size += 1
+            return new_node
 
-            if neighbor == self._tl:
+        nbr = neighbor.unwrap()
+        if after:
+            new_node._prv = nbr
+            if nbr._nxt is not None:
+                new_node._nxt = nbr._nxt
+                nbr._nxt._prv = new_node
+            nbr._nxt = new_node
+
+            if nbr == self._tl:
                 self._tl = new_node
         else:
-            new_node._nxt = neighbor
-            if neighbor._prv is not None:
-                new_node._prv = neighbor._prv
-                neighbor._prv._nxt = new_node
-            neighbor._prv = new_node
+            new_node._nxt = nbr
+            if nbr._prv is not None:
+                new_node._prv = nbr._prv
+                nbr._prv._nxt = new_node
+            nbr._prv = new_node
 
-            if neighbor == self._hd:
+            if nbr == self._hd:
                 self._hd = new_node
 
         self._size += 1
