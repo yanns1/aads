@@ -837,7 +837,7 @@ class DoublyLinkedList[T]:
             nmin = n1
             n2 = n1._nxt
             while n2 is not None:
-                if n2._v < nmin._v:
+                if n2._v < nmin._v:  # type: ignore
                     nmin = n2
                 n2 = n2._nxt
 
@@ -856,7 +856,7 @@ class DoublyLinkedList[T]:
         n1 = self._hd._nxt  # type: ignore
         while n1 is not None:
             n2 = n1
-            while n2._prv is not None and n1._v < n2._prv._v:
+            while n2._prv is not None and n1._v < n2._prv._v:  # type: ignore
                 n2 = n2._prv
 
             if n2 == n1:
