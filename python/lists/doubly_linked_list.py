@@ -71,8 +71,8 @@ class DoublyLinkedList[T]:
     """
 
     def __init__(self, lst: list[T] = []):
-        self._hd: DLLNode | None = None
-        self._tl: DLLNode | None = None
+        self._hd: DLLNode[T] | None = None
+        self._tl: DLLNode[T] | None = None
         self._size: int = 0
 
         for el in lst:
@@ -343,7 +343,7 @@ class DoublyLinkedList[T]:
         if res.is_none:
             raise IndexError()
 
-    def insert(self, v: T, neighbor: DLLNode, after: bool = True) -> DLLNode[T]:
+    def insert(self, v: T, neighbor: DLLNode[T], after: bool = True) -> DLLNode[T]:
         """
         Inserts an element before or *after* the node *neighbor*.
 
@@ -559,7 +559,7 @@ class DoublyLinkedList[T]:
 
         Returns
         -------
-        `Option[DLLNode]`
+        `Option[DLLNode[T]]`
             The deleted node or `Option.NONE()` if *i* is out of bounds.
         """
         if i == -1:
@@ -615,7 +615,7 @@ class DoublyLinkedList[T]:
 
         Returns
         -------
-        `Option[DLLNode]`
+        `Option[DLLNode[T]]`
             The deleted node or `Option.NONE()` if there is no node with value *v*.
         """
         if self._size == 0:
