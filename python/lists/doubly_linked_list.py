@@ -338,10 +338,10 @@ class DoublyLinkedList[T]:
 
         if key == -1:
             key = len(self) - 1
-        if key < 0 or key >= self._size:
-            raise IndexError()
 
-        self.set_at_idx(key, value)
+        res = self.set_at_idx(key, value)
+        if res.is_none:
+            raise IndexError()
 
     def insert(self, v: T, neighbor: DLLNode, after: bool = True) -> DLLNode[T]:
         """
@@ -651,10 +651,10 @@ class DoublyLinkedList[T]:
 
         if key == -1:
             key = self._size - 1
-        if key < 0 or key >= self._size:
-            raise IndexError()
 
-        self.delete_at_idx(key)
+        res = self.delete_at_idx(key)
+        if res.is_none:
+            raise IndexError()
 
     def rotate(self, r: int) -> "DoublyLinkedList[T]":
         """
