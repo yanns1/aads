@@ -8,15 +8,6 @@
 - Implement all sorting algorithms for each kind of list (when it makes sense):
     selection sort, insertion sort, bubble sort, merge sort, quicksort
 - Implement recursive and iterative versions when possible.
-- For walk methods on trees, add a "traversal" parameter that can take values:
-    - "depth-first pre-order"
-    - "depth-first in-order"
-    - "depth-first post-order"
-    - "depth-first reverse pre-order"
-    - "depth-first reverse in-order"
-    - "depth-first reverse post-order"
-    - "breadth-first"
-  and adapt implementations accordingly.
 - Replace LCRSNode by a node class and a Tree class (then adapt tests).
 - Make implementations as generic as possible.
 
