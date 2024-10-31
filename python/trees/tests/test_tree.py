@@ -136,9 +136,7 @@ class TestTree(unittest.TestCase):
         t6.left.left.left = LCRSNode(0)
         t6.left.left.left.left = LCRSNode(0)
 
-        test_cases = [(t0, -1), (t1, 0), (t2, 1), 
-                      (t3, 1), (t4, 4), (t5, 3), (t6, 4)
-                      ]
+        test_cases = [(t0, -1), (t1, 0), (t2, 1), (t3, 1), (t4, 4), (t5, 3), (t6, 4)]
 
         for t, expected_height in test_cases:
             self.assertEqual(LCRSNode.height(t), expected_height)

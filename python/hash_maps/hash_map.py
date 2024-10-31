@@ -1,7 +1,7 @@
 import math
 from collections.abc import Callable, Iterator
 from functools import partial
-from typing import Iterator, Union
+from typing import Union
 
 
 def _encode(s: str) -> int:

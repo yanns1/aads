@@ -181,19 +181,19 @@ class BTree[T]:
             n1 = q1.popleft()
             n2 = q2.popleft()
 
-            if n1 == None:
-                ns_eq = n2 == None
-            elif n2 == None:
-                ns_eq = n1 == None
+            if n1 is None:
+                ns_eq = n2 is None
+            elif n2 is None:
+                ns_eq = n1 is None
             else:
                 ns_eq = n1._k == n2._k
 
             if not ns_eq:
                 return False
-            if n1 != None:
+            if n1 is not None:
                 q1.append(n1._left)
                 q1.append(n1._right)
-            if n2 != None:
+            if n2 is not None:
                 q2.append(n2._left)
                 q2.append(n2._right)
 
@@ -273,13 +273,13 @@ class BTree[T]:
         return self._is_min_heap_rec(self._root)
 
     def _is_min_heap_rec(self, node: BTNode[T] | None) -> bool:
-        if node == None:
+        if node is None:
             return True
 
         cond = True
-        if node.left != None:
+        if node.left is not None:
             cond = cond and node._k <= node.left._k  # type: ignore
-        if node.right != None:
+        if node.right is not None:
             cond = cond and node._k <= node.right._k  # type: ignore
 
         return (
@@ -297,13 +297,13 @@ class BTree[T]:
         return self._is_max_heap_rec(self._root)
 
     def _is_max_heap_rec(self, node: BTNode[T] | None) -> bool:
-        if node == None:
+        if node is None:
             return True
 
         cond = True
-        if node.left != None:
+        if node.left is not None:
             cond = cond and node._k >= node.left._k  # type: ignore
-        if node.right != None:
+        if node.right is not None:
             cond = cond and node._k >= node.right._k  # type: ignore
 
         return (
@@ -322,14 +322,14 @@ class BTree[T]:
         return self._is_bst_rec(self._root, None, None)
 
     def _is_bst_rec(self, node: BTNode[T] | None, inf: T | None, sup: T | None) -> bool:
-        if node == None:
+        if node is None:
             return True
 
         # on construit la condition sur "node"
         cond = True
-        if inf != None:
+        if inf is not None:
             cond = cond and node._k <= inf  # type: ignore
-        if sup != None:
+        if sup is not None:
             cond = cond and node._k > sup  # type: ignore
 
         return (
@@ -411,15 +411,15 @@ class BTree[T]:
         # Idea: I am a node. If I am v or w, I declare being the lca.
         # During the unraveling of recursion, if I have my two children
         # telling me they are the lca, then I am the lca.
-        if node == None or node._k == v or node._k == w:
+        if node is None or node._k == v or node._k == w:
             return node
         lca_l = self._lca_rec(node._left, v, w)
         lca_r = self._lca_rec(node._right, v, w)
-        if lca_l != None and lca_r != None:
+        if lca_l is not None and lca_r is not None:
             return node
-        elif lca_l != None:
+        elif lca_l is not None:
             return lca_l
-        elif lca_r != None:
+        elif lca_r is not None:
             return lca_r
         else:
             return None
@@ -649,7 +649,7 @@ class BTree[T]:
         while q:
             node = q.popleft()
             f(node._k)
-            if node._left != None:
+            if node._left is not None:
                 q.append(node._left)
-            if node._right != None:
+            if node._right is not None:
                 q.append(node._right)

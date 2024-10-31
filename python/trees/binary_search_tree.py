@@ -171,19 +171,19 @@ class BSTree[T]:
             n1 = q1.popleft()
             n2 = q2.popleft()
 
-            if n1 == None:
-                ns_eq = n2 == None
-            elif n2 == None:
-                ns_eq = n1 == None
+            if n1 is None:
+                ns_eq = n2 is None
+            elif n2 is None:
+                ns_eq = n1 is None
             else:
                 ns_eq = n1._k == n2._k
 
             if not ns_eq:
                 return False
-            if n1 != None:
+            if n1 is not None:
                 q1.append(n1._left)
                 q1.append(n1._right)
-            if n2 != None:
+            if n2 is not None:
                 q2.append(n2._left)
                 q2.append(n2._right)
 
@@ -474,7 +474,7 @@ class BSTree[T]:
         return Option.Some(node) if node is not None else Option.NONE()
 
     def _get_rec_helper(self, node: BSTNode[T] | None, key: T) -> BSTNode[T] | None:
-        if node == None:
+        if node is None:
             return None
         elif node._k == key:
             return node
@@ -593,7 +593,7 @@ class BSTree[T]:
         """
         n = node
         prv = n
-        while n != None:
+        while n is not None:
             prv = n
             n = n._left
         return prv
@@ -610,7 +610,7 @@ class BSTree[T]:
         """
         n = node
         prv = n
-        while n != None:
+        while n is not None:
             prv = n
             n = n._right
         return prv
@@ -631,7 +631,7 @@ class BSTree[T]:
         -------
         `Option[BSTNode[T]]`
         """
-        if node._right == None:
+        if node._right is None:
             return Option.NONE()
         else:
             return Option.Some(BSTree.min(node._right))
@@ -652,7 +652,7 @@ class BSTree[T]:
         -------
         `Option[BSTNode[T]]`
         """
-        if node._left == None:
+        if node._left is None:
             return Option.NONE()
         else:
             return Option.Some(BSTree.max(node._left))
